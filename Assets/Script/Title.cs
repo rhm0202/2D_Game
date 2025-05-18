@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour
 {
     public GameObject[] howToPlayPanel;
+    public GameObject settingPanel;
 
     private int currentPageIndex = 0;
 
@@ -14,12 +15,13 @@ public class Title : MonoBehaviour
 
     public void ShowHowToPlay()
     {
+        currentPageIndex = 0;
         howToPlayPanel[0].SetActive(true);
     }
 
     public void OpenSettings()
     {
-        
+        settingPanel.SetActive(true);
     }
 
     public void ExitGame()
@@ -29,6 +31,29 @@ public class Title : MonoBehaviour
 
     public void BackToMain()
     {
+        if (howToPlayPanel[currentPageIndex].activeSelf == true)
+        {
+            howToPlayPanel[currentPageIndex].SetActive(false);
+            currentPageIndex = 0;
+        }
+        else if (settingPanel.activeSelf == true)
+        {
+            settingPanel.SetActive(false);
+        }
+
+    }
+
+    public void Nextpage()
+    {
         howToPlayPanel[currentPageIndex].SetActive(false);
+        currentPageIndex++;
+        howToPlayPanel[currentPageIndex].SetActive(true);
+    }
+
+    public void PreviousPage()
+    {
+        howToPlayPanel[currentPageIndex].SetActive(false);
+        currentPageIndex--;
+        howToPlayPanel[currentPageIndex].SetActive(true);
     }
 }
