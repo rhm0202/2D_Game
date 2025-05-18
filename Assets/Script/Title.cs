@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public GameObject howToPlayPanel;
+    public GameObject[] howToPlayPanel;
+
+    private int currentPageIndex = 0;
 
     public void StartGame()
     {
@@ -12,7 +14,7 @@ public class Title : MonoBehaviour
 
     public void ShowHowToPlay()
     {
-        howToPlayPanel.SetActive(true);
+        howToPlayPanel[0].SetActive(true);
     }
 
     public void OpenSettings()
@@ -27,6 +29,6 @@ public class Title : MonoBehaviour
 
     public void BackToMain()
     {
-        howToPlayPanel.SetActive(false);
+        howToPlayPanel[currentPageIndex].SetActive(false);
     }
 }
