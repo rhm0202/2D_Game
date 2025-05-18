@@ -10,7 +10,7 @@ public class Title : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("GameStart");
     }
 
     public void ShowHowToPlay()
