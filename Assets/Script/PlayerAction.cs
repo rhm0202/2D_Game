@@ -19,18 +19,18 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
+        //좌우 움직임 구현
         float moveInput = Input.GetAxisRaw("Horizontal");
 
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
-        animator.SetBool("Move", true);
+        animator.SetBool("IsMoving", true);
 
         if (moveInput == 0)
         {
-            animator.SetBool("Move", false);
+            animator.SetBool("IsMoving", false);
         }
 
-            // 좌우 바라보는 방향 바꾸기
         if (moveInput != 0)
         {
             Vector3 scale = transform.localScale;
@@ -38,7 +38,7 @@ public class PlayerAction : MonoBehaviour
             transform.localScale = scale;
         }
 
-
+        //점프 구현
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -48,6 +48,7 @@ public class PlayerAction : MonoBehaviour
 
         animator.SetBool("IsJumping", !isGrounded);
 
+        //앉기 구현
         bool crouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         animator.SetBool("IsCrouching", crouching);
     }
