@@ -334,7 +334,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 078bb4e467b224fb98c30fb8faf940a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -355,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 67715208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.95, y: -10.57, z: 0}
+  m_LocalPosition: {x: -34.76, y: -10.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   displayHpBar: 1
-  hpBarUI: {fileID: 6484813897682268925, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
+  hpBarUI: {fileID: 733180918225896206, guid: 9998c93ee2ef2474d9cdbf4e011be0b4, type: 3}
 --- !u!1 &360618646
 GameObject:
   m_ObjectHideFlags: 0
@@ -9045,72 +9045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 500
   displayHpBar: 0
-  hpBarUI: {fileID: 0}
---- !u!1001 &1728527145
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4797365542121111710, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6484813897682268925, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_Name
-      value: HPbar
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -33.649788
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.979515
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.17220585
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7779846458205594045, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7974512269088463405, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1180686449}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b6b404631c7878841b11cfb0be65ad76, type: 3}
+  hpBarUI: {fileID: 733180918225896206, guid: 9998c93ee2ef2474d9cdbf4e011be0b4, type: 3}
 --- !u!1 &1792440966
 GameObject:
   m_ObjectHideFlags: 0
@@ -9373,6 +9308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1120641527011877620, guid: e3c7c0ff84651c94cbda1fa18491a9c3, type: 3}
+      propertyPath: fireDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4466556824218231791, guid: e3c7c0ff84651c94cbda1fa18491a9c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.23
@@ -9437,4 +9376,3 @@ SceneRoots:
   - {fileID: 1180686450}
   - {fileID: 67715212}
   - {fileID: 1558784208}
-  - {fileID: 1728527145}
