@@ -16,6 +16,7 @@ public class PlayerAction : MonoBehaviour
     public GameObject bulletPrefab;           // 투사체 프리팹
     public Transform firePoint;               // 발사 위치
     public float bulletSpeed = 10f;
+    public Transform CrfirePoint;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class PlayerAction : MonoBehaviour
         //점프 구현
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
@@ -58,9 +59,21 @@ public class PlayerAction : MonoBehaviour
         bool crouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         animator.SetBool("IsCrouching", crouching);
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        //플레이어 공격 구현
+        if (Input.GetKeyDown(KeyCode.LeftControl) && moveInput == 0 && isGrounded)
         {
-            Shoot();
+            if (crouching)
+            {
+                animator.SetTrigger("IsCrShooting");
+                CrShoot();
+
+            }
+            else
+            {
+                animator.SetTrigger("IsShooting");
+                Shoot();
+            }
+                
         }
 
 
@@ -68,8 +81,24 @@ public class PlayerAction : MonoBehaviour
 
     void Shoot()
     {
-        animator.SetTrigger("IsShooting");
+        
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+        // 방향 처리 (현재 바라보는 방향 기준)
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = new Vector2(direction * bulletSpeed, 0f);
+
+        Vector3 bulletScale = bullet.transform.localScale;
+        bulletScale.x = direction;
+        bullet.transform.localScale = bulletScale;
+    }
+
+    void CrShoot()
+    {
+
+        GameObject bullet = Instantiate(bulletPrefab, CrfirePoint.position, Quaternion.identity);
 
         // 방향 처리 (현재 바라보는 방향 기준)
         float direction = transform.localScale.x > 0 ? 1f : -1f;
