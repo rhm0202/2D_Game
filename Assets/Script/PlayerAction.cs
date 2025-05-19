@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
+    // 플레이어 움직임
     public float speed = 5f;
     public float jumpForce = 7f;
     public Transform groundCheck;
@@ -10,6 +11,11 @@ public class PlayerAction : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
+
+    //플레이어 공격
+    public GameObject bulletPrefab;           // 투사체 프리팹
+    public Transform firePoint;               // 발사 위치
+    public float bulletSpeed = 10f;
 
     void Start()
     {
@@ -51,5 +57,28 @@ public class PlayerAction : MonoBehaviour
         //앉기 구현
         bool crouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         animator.SetBool("IsCrouching", crouching);
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            Shoot();
+        }
+
+
+    }
+
+    void Shoot()
+    {
+        animator.SetTrigger("IsShooting");
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+        // 방향 처리 (현재 바라보는 방향 기준)
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = new Vector2(direction * bulletSpeed, 0f);
+
+        Vector3 bulletScale = bullet.transform.localScale;
+        bulletScale.x = direction;
+        bullet.transform.localScale = bulletScale;
     }
 }
