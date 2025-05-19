@@ -17,6 +17,8 @@ public class PlayerAction : MonoBehaviour
     public Transform firePoint;               // 발사 위치
     public float bulletSpeed = 10f;
     public Transform CrfirePoint;
+    public float fireDelay = 0.5f;
+    private float nextFireTime = 0f;
 
     void Start()
     {
@@ -59,23 +61,29 @@ public class PlayerAction : MonoBehaviour
         bool crouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
         animator.SetBool("IsCrouching", crouching);
 
-        //플레이어 공격 구현
-        if (Input.GetKeyDown(KeyCode.LeftControl) && moveInput == 0 && isGrounded)
+        bool canShoot = Time.time >= nextFireTime;
+
+        if (canShoot)
         {
-            if (crouching)
+            //플레이어 공격 구현
+            if (Input.GetKeyDown(KeyCode.LeftControl) && moveInput == 0 && isGrounded)
             {
-                animator.SetTrigger("IsCrShooting");
-                CrShoot();
+                if (crouching)
+                {
+                    animator.SetTrigger("IsCrShooting");
+                    CrShoot();
+
+                }
+                else
+                {
+                    animator.SetTrigger("IsShooting");
+                    Shoot();
+                }
+
+                nextFireTime = Time.time + fireDelay;
 
             }
-            else
-            {
-                animator.SetTrigger("IsShooting");
-                Shoot();
-            }
-                
         }
-
 
     }
 
