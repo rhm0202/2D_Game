@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 3887572945407687631}
   - component: {fileID: 1120641527011877620}
   - component: {fileID: 2644230763065727300}
+  - component: {fileID: 2927896783500231186}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -223,12 +224,12 @@ MonoBehaviour:
   groundCheck: {fileID: 1411933298000732564}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   bulletPrefab: {fileID: 5253726758575250805, guid: 7f4bcf20c8432594f8ced89c0fb9a9dc, type: 3}
   firePoint: {fileID: 3172895548076001828}
   bulletSpeed: 10
   CrfirePoint: {fileID: 4486282576431049725}
-  fireDelay: 0.5
+  fireDelay: 0.1
 --- !u!70 &2644230763065727300
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -266,6 +267,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.8, y: 2.8}
   m_Direction: 0
+--- !u!114 &2927896783500231186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796410658942704772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df946588c20c3a447a25c3877979e56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
+  interactLayerMask:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!1 &7914329549713819655
 GameObject:
   m_ObjectHideFlags: 0
