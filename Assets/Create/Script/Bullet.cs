@@ -27,13 +27,18 @@ public class Bullet : MonoBehaviour
         if (((1 << other.gameObject.layer) & destroyOnLayers) != 0)
         {
             ObjectManager target = other.GetComponent<ObjectManager>();
-            // 충돌한 오브젝트의 레이어를 가져와서 체크
             if (target != null)
             {
                 target.TakeDamage(damage);
             }
 
-            Destroy(gameObject);
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+
+            Destroy(gameObject); // 총알 삭제
         }
     }
 }
