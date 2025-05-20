@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 7
+  damage: 1
   destroyOnLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
