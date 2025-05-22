@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI hpText;
+    public TextMeshProUGUI StageName;
 
     public StageData stageData;
 
@@ -73,6 +74,11 @@ public class UIManager : MonoBehaviour
     {
         var res = GameManager.Instance.playerResource;
         hpText.text = $"HP: {res.currentHP} / {res.maxHP}";
+    }
+    public void UpdateStage()
+    {
+        var res = UIManager.Instance.stageData;
+        StageName.text = $"Stage: {res.stageName}";
     }
 
     public void UpdateAmmo()

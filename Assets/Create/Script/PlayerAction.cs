@@ -32,15 +32,23 @@ public class PlayerAction : MonoBehaviour
     private bool isInvincible = false;
     private SpriteRenderer sr;
 
+    [SerializeField] private float idleThreshold = 3f; // 3초
+    private float idleTimer = 0f;
+    private Vector2 lastPosition;
+    private bool isIdle = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        lastPosition = transform.position;
     }
 
     void Update()
     {
+        TrackIdleTime();
+
         float moveInput = Input.GetAxisRaw("Horizontal");
 
         Move(moveInput);
@@ -228,5 +236,32 @@ public class PlayerAction : MonoBehaviour
     void ResetInvincibility()
     {
         isInvincible = false;
+    }
+
+    private void TrackIdleTime()
+    {
+        // 현재 위치와 이전 위치 비교
+        Vector2 currentPosition = transform.position;
+        if (Vector2.Distance(currentPosition, lastPosition) < 0.01f)
+        {
+            idleTimer += Time.deltaTime;
+
+            if (idleTimer >= idleThreshold && !isIdle)
+            {
+                isIdle = true;
+                animator.SetBool("Stand", true); // Idle 애니메이션으로 전환
+            }
+        }
+        else
+        {
+            idleTimer = 0f;
+            lastPosition = currentPosition;
+
+            if (isIdle)
+            {
+                isIdle = false;
+                animator.SetBool("Stand", false); // 움직이기 시작했으니 Idle 해제
+            }
+        }
     }
 }

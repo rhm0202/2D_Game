@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     //점수 환산을 위한 변수
     public int kill = 0;
+    public int BreakObject = 0;
+    public int ObjectScore = 0;
+    public int[] StageClearTime;
 
     void Awake()
     {
