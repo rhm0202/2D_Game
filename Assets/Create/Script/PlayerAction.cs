@@ -106,7 +106,7 @@ public class PlayerAction : MonoBehaviour
             UIManager.Instance.UpdateHP();
             animator.SetTrigger("IsHurt");
 
-            KnockbackFrom(other.transform.position);        // ← 넉백
+            KnockbackFrom(other.transform.position);     
             StartCoroutine(BlinkRoutine());
 
             Invoke(nameof(ResetHit), hitCooldown);
