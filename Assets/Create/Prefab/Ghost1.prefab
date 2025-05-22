@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3109585473482575364}
   - component: {fileID: 1824684365119805206}
   - component: {fileID: 2497006021962898177}
-  - component: {fileID: -8351857767815397513}
+  - component: {fileID: 617920508505043868}
   m_Layer: 9
   m_Name: Ghost1
   m_TagString: Untagged
@@ -204,8 +204,8 @@ MonoBehaviour:
   target: {fileID: 0}
   displayHpBar: 1
   hpBarUI: {fileID: 733180918225896206, guid: 9998c93ee2ef2474d9cdbf4e011be0b4, type: 3}
---- !u!58 &-8351857767815397513
-CircleCollider2D:
+--- !u!70 &617920508505043868
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -238,5 +238,6 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.7}
-  m_Radius: 0.7
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.7, y: 2.7}
+  m_Direction: 0

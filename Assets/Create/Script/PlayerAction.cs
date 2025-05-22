@@ -100,12 +100,16 @@ public class PlayerAction : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !isHit)
         {
+
             isHit = true;
             GameManager.Instance.TakeDamage(1);
+            UIManager.Instance.UpdateHP();
             animator.SetTrigger("IsHurt");
 
             KnockbackFrom(other.transform.position);        // ← 넉백
             StartCoroutine(BlinkRoutine());
+
+            Invoke(nameof(ResetHit), hitCooldown);
         }
     }
 
