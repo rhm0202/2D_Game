@@ -22,7 +22,6 @@ public class PlayerAction : MonoBehaviour
     private float nextFireTime = 0f;
 
     //플레이어 피격시
-    private bool isHit = false;
     public float hitCooldown = 1f;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float knockbackDuration = 0.2f;
@@ -45,7 +44,11 @@ public class PlayerAction : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
 
         Move(moveInput);
+
+        
         Jumpping();
+        
+
 
         //앉기 관련 로직
         bool crouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
@@ -98,10 +101,10 @@ public class PlayerAction : MonoBehaviour
     //피격 관련 로직
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !isHit)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !isInvincible)
         {
+            isInvincible = true;
 
-            isHit = true;
             GameManager.Instance.TakeDamage(1);
             UIManager.Instance.UpdateHP();
             animator.SetTrigger("IsHurt");
@@ -109,7 +112,7 @@ public class PlayerAction : MonoBehaviour
             KnockbackFrom(other.transform.position);     
             StartCoroutine(BlinkRoutine());
 
-            Invoke(nameof(ResetHit), hitCooldown);
+            Invoke(nameof(ResetInvincibility), invincibleTime);
         }
     }
 
@@ -167,8 +170,18 @@ public class PlayerAction : MonoBehaviour
 
     void Jumpping()
     {
-        //점프 구현
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        // 기본 상태
+        isGrounded = false;
+
+        if (hit != null)
+        {
+            if (LayerMask.LayerToName(hit.gameObject.layer) == "Ground")
+            {
+                isGrounded = true;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftAlt) && isGrounded)
         {
@@ -178,10 +191,6 @@ public class PlayerAction : MonoBehaviour
         animator.SetBool("IsJumping", !isGrounded);
     }
 
-    void ResetHit()
-    {
-        isHit = false;
-    }
     public void KnockbackFrom(Vector2 sourcePosition)
     {
         if (isKnockbacked) return;
@@ -204,7 +213,6 @@ public class PlayerAction : MonoBehaviour
 
     IEnumerator BlinkRoutine()
     {
-        isInvincible = true;
         float elapsed = 0f;
 
         while (elapsed < invincibleTime)
@@ -215,6 +223,10 @@ public class PlayerAction : MonoBehaviour
         }
 
         sr.enabled = true;
+    }
+
+    void ResetInvincibility()
+    {
         isInvincible = false;
     }
 }

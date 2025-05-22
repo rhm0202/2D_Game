@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerResource playerResource;
+
+    //점수 환산을 위한 변수
+    public int kill = 0;
 
     void Awake()
     {
@@ -44,4 +48,6 @@ public class GameManager : MonoBehaviour
     {
         playerResource.AddItem(count);
     }
+
+
 }

@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     private Slider hpSlider;
     private GameObject hpInstance;
 
+    private bool diecheck = false;
+
     private Animator animator;
 
     void Start()
@@ -96,12 +98,19 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if(diecheck == false)
+        {
+            GameManager.Instance.kill++;
+            diecheck = true;
+        }
+
         if (animator != null)
         {
             animator.SetTrigger("Die"); 
         }
-
+        
         StartCoroutine(DelayedDestroy(0.5f));
+        
     }
 
     private System.Collections.IEnumerator DelayedDestroy(float delay)

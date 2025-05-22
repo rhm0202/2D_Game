@@ -2004,6 +2004,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810275442926016620, guid: 2344ab61328e551409ef874bda7d3f71, type: 3}
+      propertyPath: m_Size.y
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5824658659606689400, guid: 2344ab61328e551409ef874bda7d3f71, type: 3}
       propertyPath: m_Name
       value: thing1
@@ -2332,6 +2336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerResource: {fileID: 11400000, guid: da7045d96a09405479ae205683e75c12, type: 2}
+  kill: 0
 --- !u!1 &973595334
 GameObject:
   m_ObjectHideFlags: 0

@@ -202,7 +202,7 @@ MonoBehaviour:
   moveSpeed: 1
   maxHP: 10
   target: {fileID: 0}
-  displayHpBar: 0
+  displayHpBar: 1
   hpBarUI: {fileID: 733180918225896206, guid: 9998c93ee2ef2474d9cdbf4e011be0b4, type: 3}
 --- !u!70 &810275442926016620
 CapsuleCollider2D:
@@ -239,5 +239,5 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 1.6, y: 2.5}
+  m_Size: {x: 1.6, y: 2.3}
   m_Direction: 0

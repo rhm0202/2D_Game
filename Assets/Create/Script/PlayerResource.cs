@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "PlayerResourceData", menuName = "Game/PlayerResource")]
 
@@ -24,6 +25,11 @@ public class PlayerResource : ScriptableObject
     {
         currentHP -= amount;
         if (currentHP < 0) currentHP = 0;
+
+        if (currentHP == 0)
+        {
+            GameOver(); // 체력 0이면 게임오버로 전환
+        }
     }
 
     public void Heal(int amount)
@@ -46,5 +52,9 @@ public class PlayerResource : ScriptableObject
     public void AddItem(int count)
     {
         itemCount += count;
+    }
+    void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
