@@ -2225,6 +2225,7 @@ MonoBehaviour:
   timeText: {fileID: 973595336}
   ammoText: {fileID: 1122860728}
   hpText: {fileID: 1141451821}
+  StageName: {fileID: 0}
   stageData: {fileID: 11400000, guid: 9efa3530079ef934395bd21156ba9eea, type: 2}
 --- !u!1 &899388223
 GameObject:
@@ -2272,6 +2273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerResource: {fileID: 11400000, guid: da7045d96a09405479ae205683e75c12, type: 2}
   kill: 0
+  BreakObject: 0
+  ObjectScore: 0
+  StageClearTime: 0000000000000000
 --- !u!1 &973595334
 GameObject:
   m_ObjectHideFlags: 0
