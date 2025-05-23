@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerAction : MonoBehaviour
     public Transform CrfirePoint;
     public float fireDelay = 0.5f;
     private float nextFireTime = 0f;
+    [SerializeField] private float reloadTime = 1.5f;
+    private bool isReloading = false;
 
     //플레이어 피격시
     public float hitCooldown = 1f;
@@ -47,15 +50,15 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
-        TrackIdleTime();
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        TrackIdleTime(stateInfo);
 
         float moveInput = Input.GetAxisRaw("Horizontal");
 
         Move(moveInput);
-
         
         Jumpping();
-        
 
 
         //앉기 관련 로직
@@ -92,15 +95,15 @@ public class PlayerAction : MonoBehaviour
             }
             else if (!haveAmmo)
             {
-                GameManager.Instance.Reload();
-                UIManager.Instance.UpdateAmmo();
+                isReloading = true;
+                Invoke(nameof(FinishReload), reloadTime);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.R)) // R키로 리로드
         {
-            GameManager.Instance.Reload();
-            UIManager.Instance.UpdateAmmo();
+            isReloading = true;
+            Invoke(nameof(FinishReload), reloadTime);
         }
 
         
@@ -185,10 +188,7 @@ public class PlayerAction : MonoBehaviour
 
         if (hit != null)
         {
-            if (LayerMask.LayerToName(hit.gameObject.layer) == "Ground")
-            {
                 isGrounded = true;
-            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftAlt) && isGrounded)
@@ -238,7 +238,7 @@ public class PlayerAction : MonoBehaviour
         isInvincible = false;
     }
 
-    private void TrackIdleTime()
+    private void TrackIdleTime(AnimatorStateInfo stateInfo)
     {
         // 현재 위치와 이전 위치 비교
         Vector2 currentPosition = transform.position;
@@ -249,7 +249,7 @@ public class PlayerAction : MonoBehaviour
             if (idleTimer >= idleThreshold && !isIdle)
             {
                 isIdle = true;
-                animator.SetBool("Stand", true); // Idle 애니메이션으로 전환
+                animator.SetBool("Stand", true); // 애니메이션으로 전환
             }
         }
         else
@@ -260,8 +260,26 @@ public class PlayerAction : MonoBehaviour
             if (isIdle)
             {
                 isIdle = false;
-                animator.SetBool("Stand", false); // 움직이기 시작했으니 Idle 해제
+                animator.SetBool("Stand", false); // 움직이기 시작했으니
             }
         }
+
+        if (!stateInfo.IsName("Stand") && !stateInfo.IsName("idle"))
+        {
+            idleTimer = 0f;
+            lastPosition = currentPosition;
+
+            if (isIdle)
+            {
+                isIdle = false;
+                animator.SetBool("Stand", false); // 움직이기 시작했으니
+            }
+        }
+    }
+    void FinishReload()
+    {
+        GameManager.Instance.Reload();
+        UIManager.Instance.UpdateAmmo();
+        isReloading = false;
     }
 }

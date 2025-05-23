@@ -5,6 +5,8 @@ public class ObjectManager : MonoBehaviour
 {
     public int maxHP = 5;
     private int currentHP;
+    public int objectScore = 0;
+    private bool isDie = false;
 
     public bool displayHpBar = false; 
     public GameObject hpBarUI;      
@@ -69,6 +71,12 @@ public class ObjectManager : MonoBehaviour
 
     void Die()
     {
+        if (!isDie)
+        {
+            GameManager.Instance.BreakObject++;
+            GameManager.Instance.ObjectScore += objectScore;
+            isDie = true;
+        }
         Destroy(gameObject); 
     }
 
