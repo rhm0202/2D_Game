@@ -812,6 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerResource: {fileID: 11400000, guid: da7045d96a09405479ae205683e75c12, type: 2}
+  clearCheck: 0
   kill: 0
   BreakObject: 0
   ObjectScore: 0
@@ -819,6 +820,7 @@ MonoBehaviour:
   StageClearTime: 0000000000000000
   getItem: 0
   itemScore: 0
+  highScore: 0
 --- !u!4 &970317468
 Transform:
   m_ObjectHideFlags: 0
@@ -1656,6 +1658,8 @@ MonoBehaviour:
   ItemScore: {fileID: 1890911328}
   TimeScore: {fileID: 1187413768}
   BreakScore: {fileID: 1996587976}
+  FinalScore: {fileID: 987279324}
+  HighScore: {fileID: 1283733904}
 --- !u!1 &1890911326
 GameObject:
   m_ObjectHideFlags: 0

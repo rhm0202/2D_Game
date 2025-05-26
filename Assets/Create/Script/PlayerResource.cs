@@ -55,6 +55,9 @@ public class PlayerResource : ScriptableObject
     }
     void GameOver()
     {
+        currentHP = maxHP;
+        currentAmmo = maxAmmo;
+        itemCount = 0;
         SceneManager.LoadScene("GameOver");
     }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI TimeScore;
     public TextMeshProUGUI BreakScore;
 
+    private int finalScore;
+    public TextMeshProUGUI FinalScore;
+    public TextMeshProUGUI HighScore;
     void Start()
     {
         if(GameManager.Instance.clearCheck == true)
@@ -31,5 +35,21 @@ public class ScoreManager : MonoBehaviour
         //ItemScore.text = $"Item Score : {GameManager.Instance.kill * 10}";
         BreakScore.text = $"Break Score : {GameManager.Instance.ObjectScore}";
 
+        finalScore = GameManager.Instance.kill * 10 + GameManager.Instance.itemScore + GameManager.Instance.ObjectScore;
+        FinalScore.text = $"Final Score : {finalScore}";
+        HighScore.text = $"High Score : {GameManager.Instance.highScore}";
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return)) // Enter 키
+        {
+            if (GameManager.Instance.highScore <= finalScore)
+            {
+                GameManager.Instance.highScore = finalScore;
+            } 
+            GameManager.Instance.ResetGameData();
+            SceneManager.LoadScene("Title"); // 타이틀 씬 이름 정확히 작성
+        }
     }
 }

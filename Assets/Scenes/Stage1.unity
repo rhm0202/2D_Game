@@ -9725,11 +9725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570269278926640254, guid: da3192245bb4fd74e83d3276f3aa22df, type: 3}
       propertyPath: lastStage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570269278926640254, guid: da3192245bb4fd74e83d3276f3aa22df, type: 3}
       propertyPath: destinationSceneName
-      value: GameOver
+      value: Stage2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

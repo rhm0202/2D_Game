@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public int getItem;
     public int itemScore;
 
+    public int highScore;
+
     void Awake()
     {
 
@@ -58,6 +60,24 @@ public class GameManager : MonoBehaviour
     public void AddItem(int count)
     {
         playerResource.AddItem(count);
+    }
+
+    public void ResetGameData()
+    {
+        kill = 0;
+        BreakObject = 0;
+        ObjectScore = 0;
+        stageCheck = 0;
+        getItem = 0;
+        itemScore = 0;
+
+        if (StageClearTime != null)
+        {
+            for (int i = 0; i < StageClearTime.Length; i++)
+            {
+                StageClearTime[i] = 0;
+            }
+        }
     }
 
 
