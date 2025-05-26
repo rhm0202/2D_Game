@@ -6,11 +6,19 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public PlayerResource playerResource;
 
+    public bool clearCheck = false;
+
     //점수 환산을 위한 변수
     public int kill = 0;
+
     public int BreakObject = 0;
     public int ObjectScore = 0;
+
+    public int stageCheck = 0;
     public int[] StageClearTime;
+
+    public int getItem;
+    public int itemScore;
 
     void Awake()
     {

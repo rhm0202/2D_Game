@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
         // 초기 UI 값 설정
         UpdateHP();
         UpdateAmmo();
+        UpdateStage();
         if (stageData.stageName != "Start")
         {
             UpdateTime();

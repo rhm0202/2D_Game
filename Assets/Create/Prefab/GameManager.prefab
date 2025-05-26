@@ -48,4 +48,7 @@ MonoBehaviour:
   kill: 0
   BreakObject: 0
   ObjectScore: 0
+  stageCheck: 0
   StageClearTime: 0000000000000000
+  getItem: 0
+  itemScore: 0
